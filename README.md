@@ -54,9 +54,9 @@ vercel deploy
 
 ## 🙌 Contributors
 - For any queries or feedback, please contact:
-**Name** - Pranav Deshmukh
-**Mail-ID**: pdd141102@gmail.com
-**LinkedIn** : [LinkedIn](https://www.linkedin.com/in/pranxxvv/)
+- - **Name** - Pranav Deshmukh
+- - **Mail-ID**: pdd141102@gmail.com
+- - **LinkedIn** : [LinkedIn](https://www.linkedin.com/in/pranxxvv/)
 
 ## 📜 License
 This project is licensed under the **MIT License**. Feel free to use and modify it!
