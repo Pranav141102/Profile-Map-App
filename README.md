@@ -12,10 +12,11 @@ The **Profile Map App** is a web application built using **Next.js, React, and T
 - 🛠 **Admin Dashboard** for managing user profiles.
 
 ## 🛠️ Tech Stack
-- **Frontend:** Next.js, React.js, Tailwind CSS
-- **State Management:** useState (React Hooks)
-- **Google Maps Embed API** for location visualization
-- **Deployment:** Vercel (or any preferred platform)
+**Framework**: Next.js (React + TypeScript)
+**Styling**: Tailwind CSS
+**State Management**: React Hooks (useState)
+**Google Maps Integration**: Embedded maps via iframe
+**Deployment**: Vercel
 
 ## 📂 Project Structure
 ```
