@@ -35,29 +35,33 @@ export default function Home() {
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
+
   const [newProfile, setNewProfile] = useState<Profile>({
-    id: 0,
+    id: profiles.length + 1, // Ensuring sequential ID
     name: '',
     description: '',
     location: { lat: 0, lng: 0 },
   });
 
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
-  const [copied, setCopied] = useState(false);
 
-  // Function to copy coordinates
-  const copyToClipboard = (lat: number, lng: number) => {
-    const text = `${lat}, ${lng}`;
-    navigator.clipboard.writeText(text).then(() => {
+  // Function to copy coordinates with error handling
+  const copyToClipboard = async (lat: number, lng: number) => {
+    try {
+      const text = `${lat}, ${lng}`;
+      await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000); // Reset after 2s
-    });
+    } catch (error) {
+      console.error('Failed to copy:', error);
+    }
   };
 
   const handleAddProfile = () => {
     setProfiles([...profiles, { ...newProfile, id: profiles.length + 1 }]);
     setIsFormVisible(false);
-    setNewProfile({ id: 0, name: '', description: '', location: { lat: 0, lng: 0 } });
+    setNewProfile({ id: profiles.length + 2, name: '', description: '', location: { lat: 0, lng: 0 } });
   };
 
   return (
@@ -151,9 +155,11 @@ export default function Home() {
         {/* Map View of Selected Profile */}
         {selectedProfile && (
           <div className="mt-8 w-full max-w-4xl">
-            <h2 className="text-2xl font-semibold text-center mb-4">{selectedProfile.name}'s Location</h2>
+            <h2 className="text-2xl font-semibold text-center mb-4">
+              {selectedProfile.name}&rsquo;s Location
+            </h2>
 
-            {/* Click-to-Copy Coordinates (Centered) */}
+            {/* Click-to-Copy Coordinates */}
             <div className="flex flex-col items-center">
               <p
                 className="text-blue-600 cursor-pointer underline hover:text-blue-800 text-center mt-2"
@@ -162,7 +168,7 @@ export default function Home() {
                 📍 {selectedProfile.location.lat}, {selectedProfile.location.lng} (Click to Copy)
               </p>
 
-              {/* Copied message (Centered) */}
+              {/* Copied message */}
               {copied && <p className="text-green-500 text-center mt-2">✔ Coordinates Copied!</p>}
             </div>
 
